@@ -14,15 +14,15 @@ Moreover, download the precomputed results for darknet and fpn_resnet in this li
 
 Once you completed the first steps to install this project, it is time to download the following files in this github repository and to copy them in the following directories:
 
-FILES TO COPY	
-/loop_over_dataset.py	/
-/association.py	/
-/filter.py	/
-/measurements.py	/
-/trackmanagement.py	/
-/objdet_detect.py	/
-/params.py	/
-/evaluation.py	/
+FILES TO COPY:
+1. loop_over_dataset.py
+2. association.py
+3. filter.py
+4. measurements.py
+5. trackmanagement.py
+6. objdet_detect.py	
+6. params.py
+7. evaluation.py
 
 
 Now that you have successfully installed this project, you can run it by using this command python loop_over_dataset.py.
