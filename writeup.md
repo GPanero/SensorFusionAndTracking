@@ -6,11 +6,27 @@
 
 **Step 1. Extended Kalman Filter (EKF):** A complete Kalman filter with six dimensions has been successfully implemented, consisting of three dimensions for position (x, y, z) and three dimensions for velocity (vx, vy, vz). This accomplishment has been considered as a significant achievement, as it serves as a crucial component of a tracking system with sensor fusion support. During the implementation process, challenges were encountered in determining the appropriate usage of 'H * x' and 'hx'. The latter, 'hx', was specifically employed for computing gamma and the Mahalanobis Distance (MHD). Additionally, considerable effort was dedicated to fine-tuning the 6x6 matrices returned by 'P()' and 'Q()'. It is believed that an almost optimal configuration for this project has been identified.
 
+Root Mean Square Error:
+- The mean RMSE is 0.31, below 0.35 as the rubric requested
+- The RMSE is displayed in following image: <img src='RootMeanSquareError1.png'/>
+
 **Step 2. Track Management:** A module was developed to handle the creation of new tracks, deletion of old tracks, and updating of states for existing tracks based on the acquired measurement data. A dictionary was utilized, with frames serving as keys and lists accumulating the presence or absence of camera and lidar measurements as corresponding values. This approach offers enhanced robustness by avoiding penalization of tracks with measurements from only one sensor or the absence of measurements from the other sensor. Furthermore, this approach expedites track confirmation when measurements from both sensors are available. 
+
+Root Mean Square Error:
+- The mean RMSE is 0.03
+- The RMSE is displayed in following image: <img src='RootMeanSquareError2.png'/>
 
 **Step 3. Data Association:** The algorithm to associate tracks with measurements is very clever because it matches the nearest pair of track and measurement in the space formed by the Mahalanobis Distance (MHD), which is a space deformed by the statistical expectations of positions and velocities. And the algorithm continues to match the nearest pairs until there are no pairs to match.
 
+Root Mean Square Error:
+- The Track 0 (blue) and track 1 (orange) are the 2 important cars whose tracking was never lost. Track 0 (blue) increases its RMSEs slightly from second 10th to second 13th, when there are no lidar measurements. Track 10 (green) is the black car whose precomputed detections shown no lidar measurements until second 18th.
+- The RMSE is displayed in following image: <img src='RootMeanSquareError3.png'/>
+
 **Step 4. Camera-Lidar Sensor Fusion:** This forth step represents the final stage in accomplishing the comprehensive sensor fusion system. The transformation of coordinates from two distinct sensors, each possessing different geometries, into vehicle coordinates is achieved through the utilization of homogeneous transformation matrices. Similarly, the conversion of vehicle coordinates into their respective sensor coordinates enables the computation of 'hx' and the Extended Kalman Filter's Jacobian. During this stage, confusion arose regarding the activation of camera measurements, despite adhering to the provided instructions meticulously. An extensive search was conducted to identify conditional statements, such as 'if sensor.name == 'lidar':' which were subsequently modified to 'if sensor.name in ['lidar', 'camera']:' with regrettable consequences. Eventually, it was realized that such modifications were unnecessary, as the omission of utilizing 'hx' when computing the Mahalanobis Distance (MHD) resulted in the exclusion of all camera measurements.
+
+Root Mean Square Error:
+- The Tracker works perfectly and follows the 2 important cars, Track 0 (blue) and track 1 (orange), from the begining to the end with mean RMSEs of 0.18 and 0.17. Track 27 (green) is the black car that appeared in the middle of the video. There are only 3 confirmed tracks with mean RMSEs below 0.25. And all ghosts tracks were eliminated
+- The RMSE is displayed in following image: <img src='RootMeanSquareError4-Darknet.png'/>
 
 ### Which part of the project was most difficult for you to complete, and why?
 
