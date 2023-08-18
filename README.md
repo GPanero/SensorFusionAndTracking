@@ -25,7 +25,7 @@ FILES TO COPY
 /evaluation.py	/
 
 
-Now that you have successfully installed this project, you can run it by using this command python loop_over_dataset_f4.py.
+Now that you have successfully installed this project, you can run it by using this command python loop_over_dataset.py.
 
 ### External Dependencies
 Parts of this project are based on the following repositories:
