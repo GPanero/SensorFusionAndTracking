@@ -59,7 +59,7 @@ Even without solving any of the tasks, the project code can be executed.
 
 The final project uses pre-computed lidar detections in order for all students to have the same input data. If you use the workspace, the data is prepared there already. Otherwise, download the pre-computed lidar detections (~1 GB), unzip them and put them in the folder results.
 
-External Dependencies
+### External Dependencies
 Parts of this project are based on the following repositories:
 
 Simple Waymo Open Dataset Reader
