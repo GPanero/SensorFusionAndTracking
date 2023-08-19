@@ -178,19 +178,15 @@ class Measurement:
             # TODO Step 4: initialize camera measurement including z, R, and sensor 
             ############
             
-            sigma_cam_i = params.sigma_cam_i
-            sigma_cam_j = params.sigma_cam_j
-            self.z = np.zeros((sensor.dim_meas, 1)) # measurement vector
+            self.sensor = sensor
+            self.z = np.zeros((sensor.dim_meas,1)) # measurement vector
             self.z[0] = z[0]
             self.z[1] = z[1]
-            self.sensor = sensor # sensor that generated this measurement
-            self.R = np.matrix([[sigma_cam_i**2, 0             ], # measurement noise covariance matrix
-                                [0,              sigma_cam_j**2]])
-            # From loop_over_dataset.py
-            # z = [box.center_x, box.center_y, box.width, box.length]
-            # meas_list_cam = camera.generate_measurement(cnt_frame, z, meas_list_cam)
-            self.width = z[2]
-            self.length = z[3]
+                        
+            self.R = np.matrix([
+                [params.sigma_cam_i**2, 0],
+                [0, params.sigma_cam_j**2]
+            ])
             ############
             # END student code
             ############ 

@@ -49,7 +49,7 @@ class Filter:
         dt = self.dt
         #return kalman_matrix(1, dt, 0, 1) # really good
         #return kalman_matrix(1, 0.1, 0, 1) # REALLY GOOD
-        return kalman_matrix(1, 0.2, 0, 1) # GREAT
+        #return kalman_matrix(1, 0.2, 0, 1) # GREAT <--
         #return kalman_matrix(1, 0.18, 0, 1)
         #return kalman_matrix(1, 0.15, 0, 1)
         #return kalman_matrix(1, 0, 0, 1)
@@ -76,7 +76,7 @@ class Filter:
         #return kalman_matrix(0.1, 0.1, 0.1, 0.1)
         #return kalman_matrix(0.01, 0.01, 0.01, 0.01) # REALLY GOOD
         #return kalman_matrix(0.01, 0.001, 0.001, 0.01) # MUCH BETTER
-        return kalman_matrix(0.01, 0, 0, 0.01) # ALMOST EXCELLENT
+        #return kalman_matrix(0.01, 0, 0, 0.01) # ALMOST EXCELLENT <--
         #return kalman_matrix(0.01, 0.001, 0.001, 0.01)
         #return kalman_matrix(0.005, 0.001, 0.001, 0.005)
         #return kalman_matrix(0.02, 0.02, 0.02, 0.02)
@@ -85,8 +85,8 @@ class Filter:
         
         q = self.q
         dt = self.dt
-        q1 = ((dt**3)/3) * q 
-        q2 = ((dt**2)/2) * q 
+        q1 = 1/3 * (dt**3) * q
+        q2 = 1/2 * (dt**2) * q 
         q3 = dt * q 
         return np.matrix([[q1, 0,  0,  q2, 0,  0 ],
                           [0,  q1, 0,  0,  q2, 0 ],
